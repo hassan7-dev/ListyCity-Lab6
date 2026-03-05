@@ -1,5 +1,7 @@
 package com.example.listycity;
 
+import java.util.Objects;
+
 /**
  * This class represents a City.
  * It stores the name of the city and the province it belongs to.
@@ -55,5 +57,34 @@ public class City implements Comparable{
     public int compareTo(Object o) {
         City city=(City) o;
         return this.city.compareTo(city.getCity());
+    }
+
+    /**
+     * Checks if this city is equal to another object.
+     * Two cities are equal if they have the same name and province.
+     *
+     * @param o The object to compare with
+     * @return true if equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object o){
+        if(this==o){
+            return true;
+        }
+        if(o==null || getClass()!=o.getClass()){
+            return false;
+        }
+        City other=(City) o;
+        return this.city.equals(other.city) && this.province.equals(other.province);
+    }
+
+    /**
+     * Returns a hash code based on city name and province.
+     *
+     * @return hash code
+     */
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.city,this.province);
     }
 }
